@@ -3828,14 +3828,14 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:rgba
 <span class="c-typ">int</span> <span class="c-fun">main</span>() {
     <span class="c-typ">std::string</span> sid = <span class="c-str">"YOUR_ID"</span>;
     <span class="c-typ">std::string</span> app_ver = <span class="c-str">"1.0"</span>;
-    <span class="c-typ">std::string</span> sv = gk_auth::<span class="c-fun">checkUpdate</span>(sid);
+    <span class="c-typ">std::string</span> sv = Prassu_auth::<span class="c-fun">checkUpdate</span>(sid);
     
     <span class="c-key">if</span> (!sv.<span class="c-fun">empty</span>() &amp;&amp; sv != app_ver) {
         <span class="c-typ">std::cout</span> &lt;&lt; <span class="c-str">"Update available: "</span> &lt;&lt; sv &lt;&lt; <span class="c-str">"\n"</span>;
     }
     
     <span class="c-com">// System checks DB for local HWID lock match</span>
-    <span class="c-key">if</span> (gk_auth::<span class="c-fun">hwidLogin</span>(sid)) {
+    <span class="c-key">if</span> (Prassu_auth::<span class="c-fun">hwidLogin</span>(sid)) {
         <span class="c-typ">std::cout</span> &lt;&lt; <span class="c-str">"AUTO LOGIN SUCCESSFUL.\n"</span>;
         <span class="c-key">return</span> <span class="c-num">0</span>;
     }
@@ -3844,7 +3844,7 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:rgba
     <span class="c-typ">std::cout</span> &lt;&lt; <span class="c-str">"Enter License Key: "</span>;
     <span class="c-fun">std::getline</span>(<span class="c-typ">std::cin</span>, key);
     
-    <span class="c-key">if</span> (gk_auth::<span class="c-fun">licenseLogin</span>(sid, key)) {
+    <span class="c-key">if</span> (Prassu_auth::<span class="c-fun">licenseLogin</span>(sid, key)) {
         <span class="c-typ">std::cout</span> &lt;&lt; <span class="c-str">"ACCESS GRANTED.\n"</span>;
     } <span class="c-key">else</span> {
         <span class="c-typ">std::cout</span> &lt;&lt; <span class="c-str">"VALIDATION FAILURE.\n"</span>;
@@ -3865,7 +3865,7 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:rgba
                             <div class="code-header"><span>Program.cs</span><button class="copy-btn"
                                     onclick="copyCode('codeCs')">📋 Copy</button></div>
                             <pre><span class="c-key">using</span> System;
-<span class="c-key">using</span> GkAuth;
+<span class="c-key">using</span> PrassuAuth;
 
 <span class="c-typ">string</span> sid = <span class="c-str">"YOUR_ID"</span>;
 <span class="c-typ">string</span> sv = Auth.<span class="c-fun">CheckUpdate</span>(sid);
@@ -4469,7 +4469,7 @@ token = <span class="c-fun">input</span>(<span class="c-str">"Provide License Ke
 #pragma comment(lib, "advapi32.lib")
 #pragma comment(lib, "iphlpapi.lib")
 
-namespace gk_auth {
+namespace Prassu_auth {
 static std::string httpPost(std::string url, const std::string& body) {
   std::string result;
   URL_COMPONENTS uc = { sizeof(URL_COMPONENTS) };
@@ -4582,7 +4582,7 @@ using System.Security.Principal;
 using System.Net.NetworkInformation;
 using System.Collections.Generic;
 
-namespace GkAuth {
+namespace PrassuAuth {
     public static class Auth {
         private const string ApiUrl = "${API}";
         public const string AppVersion = "1.0";
